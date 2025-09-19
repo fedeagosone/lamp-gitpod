@@ -1,0 +1,17 @@
+FROM gitpod/workspace-full
+
+# Installa Apache, PHP, MySQL
+RUN sudo apt-get update && sudo apt-get install -y \
+    apache2 \
+    php \
+    libapache2-mod-php \
+    php-mysql \
+    mysql-server \
+    && sudo service mysql start
+
+# Abilita Apache e MySQL al boot
+RUN sudo systemctl enable apache2
+RUN sudo systemctl enable mysql
+
+# Espone le porte
+EXPOSE 8080 3306
